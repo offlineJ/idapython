@@ -226,7 +226,6 @@ ifeq ($(OUT_OF_TREE_BUILD),)
     SDK_SOURCES+=$(IDA_INCLUDE)/hexrays.hpp
   endif
   SDK_SOURCES+=$(IDA_INCLUDE)/lumina.hpp
-  SDK_SOURCES+=$(IDA_INCLUDE)/dirtree.hpp
 else
   SDK_SOURCES=$(wildcard $(IDA_INCLUDE)/*.h) $(wildcard $(IDA_INCLUDE)/*.hpp)
 endif
@@ -273,6 +272,7 @@ MODULES_NAMES += bitrange
 MODULES_NAMES += bytes
 MODULES_NAMES += dbg
 MODULES_NAMES += diskio
+MODULES_NAMES += dirtree
 MODULES_NAMES += entry
 MODULES_NAMES += enum
 MODULES_NAMES += expr
@@ -292,10 +292,6 @@ MODULES_NAMES += lines
 MODULES_NAMES += loader
 ifdef TESTABLE_BUILD
   MODULES_NAMES += lumina
-  # when dirtree.hpp makes it into the SDK, add all relevant scripts
-  # that are currently in tests/ui/, into plugins/idapython/examples/.
-  # Grep for 'dirtree' and 'dirspec' to spot those.
-  MODULES_NAMES += dirtree
 endif
 MODULES_NAMES += moves
 MODULES_NAMES += nalt
@@ -670,9 +666,6 @@ SWIG_IFACE_segment=range
 SWIG_IFACE_segregs=range
 SWIG_IFACE_typeinf=idp
 SWIG_IFACE_tryblks=range
-# ifdef TESTABLE_BUILD
-# SWIG_IFACE_kernwin=dirtree
-# endif
 
 MODULE_LIFECYCLE_bytes=--lifecycle-aware
 MODULE_LIFECYCLE_hexrays=--lifecycle-aware
